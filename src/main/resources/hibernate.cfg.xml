@@ -19,10 +19,17 @@
         <mapping class="ru.job4j.hibernate.car.Model"/>
         <mapping class="ru.job4j.hibernate.car.Brand"/>
 
-        <mapping class="ru.job4j.hibernate.book.Author"/>
-        <mapping class="ru.job4j.hibernate.book.Book"/>
+        <!--<mapping class="ru.job4j.hibernate.book.Author"/>
+        <mapping class="ru.job4j.hibernate.book.Book"/>-->
 
-        <mapping class="ru.job4j.hibernate.candidate.Candidate"/>
+        <!--<mapping class="ru.job4j.hibernate.candidate.Candidate"/>-->
+
+        <mapping class="ru.job4j.hibernate.candidateX2.Account"/>
+        <mapping class="ru.job4j.hibernate.candidateX2.Book"/>
+        <mapping class="ru.job4j.hibernate.candidateX2.Student"/>
+        <mapping class="ru.job4j.hibernate.candidateX2.Candidate"/>
+        <mapping class="ru.job4j.hibernate.candidateX2.DataBasePost"/>
+        <mapping class="ru.job4j.hibernate.candidateX2.Post"/>
 
     </session-factory>
 </hibernate-configuration>
