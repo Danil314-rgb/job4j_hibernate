@@ -15,7 +15,11 @@
 
         <mapping class="ru.job4j.hibernate.Role" />
         <mapping class="ru.job4j.hibernate.User" />
+
         <mapping class="ru.job4j.hibernate.car.Model"/>
         <mapping class="ru.job4j.hibernate.car.Brand"/>
+
+        <mapping class="ru.job4j.hibernate.book.Author"/>
+        <mapping class="ru.job4j.hibernate.book.Book"/>
     </session-factory>
 </hibernate-configuration>
