@@ -1,8 +1,6 @@
 package ru.job4j.hibernate.car;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,17 +12,15 @@ public class Model {
 
     private String name;
 
-    @OneToMany
-    private List<Brand> brands = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
+    private Brand brand;
 
-    public static Model of(String name) {
+    public static Model of(String name, Brand brand) {
         Model model = new Model();
         model.name = name;
+        model.brand = brand;
         return model;
-    }
-
-    public void addBrand(Brand b) {
-        this.brands.add(b);
     }
 
     public int getId() {
@@ -43,12 +39,12 @@ public class Model {
         this.name = name;
     }
 
-    public List<Brand> getBrands() {
-        return brands;
+    public Brand getBrand() {
+        return brand;
     }
 
-    public void setBrands(List<Brand> brands) {
-        this.brands = brands;
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 
     @Override
@@ -62,5 +58,14 @@ public class Model {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Model{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", brand=" + brand +
+                '}';
     }
 }

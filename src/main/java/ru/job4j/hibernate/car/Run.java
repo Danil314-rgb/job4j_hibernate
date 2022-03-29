@@ -6,9 +6,13 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Run {
 
     public static void main(String[] args) {
+        List<Brand> list = new ArrayList<>();
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure().build();
         try {
@@ -17,28 +21,24 @@ public class Run {
             Session session = sf.openSession();
             session.beginTransaction();
 
-            Brand brand = Brand.of("Lana");
-            session.save(brand);
+            Brand brand = Brand.of("Lada");
+            session.persist(brand);
 
-            Model model1 = Model.of("2107");
-            model1.addBrand(session.load(Brand.class, 1));
-            session.save(model1);
+            Model model1 = Model.of("2107", brand);
+            Model model2 = Model.of("2110", brand);
+            Model model3 = Model.of("2111", brand);
 
-            Model model2 = Model.of("2111");
-            model2.addBrand(session.load(Brand.class, 1));
-            session.save(model2);
+            session.persist(model1);
+            session.persist(model2);
+            session.persist(model3);
 
-            Model model3 = Model.of("2111");
-            model3.addBrand(session.load(Brand.class, 1));
-            session.save(model3);
+            list = session.createQuery("from Brand").list();
 
-            Model model4 = Model.of("2110");
-            model4.addBrand(session.load(Brand.class, 1));
-            session.save(model4);
-
-            Model model5 = Model.of("2114");
-            model5.addBrand(session.load(Brand.class, 1));
-            session.save(model5);
+            for (Brand brands : list) {
+                for (Model model : brands.getModels()) {
+                    System.out.println(model);
+                }
+            }
 
             session.getTransaction().commit();
             session.close();

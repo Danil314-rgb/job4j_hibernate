@@ -21,5 +21,8 @@
 
         <mapping class="ru.job4j.hibernate.book.Author"/>
         <mapping class="ru.job4j.hibernate.book.Book"/>
+
+        <mapping class="ru.job4j.hibernate.car.Task"/>
+        <mapping class="ru.job4j.hibernate.car.Category"/>
     </session-factory>
 </hibernate-configuration>
