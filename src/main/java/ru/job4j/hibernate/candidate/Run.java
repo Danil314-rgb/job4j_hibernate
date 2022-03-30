@@ -38,8 +38,10 @@ public class Run {
             System.out.println(queryById.uniqueResult());
 
             Query queryByName = session.createQuery("from Candidate c where c.name = :fName");
-            queryByName.setParameter("fName", "Игорь");
-            System.out.println(queryByName.uniqueResult());
+            queryByName.setParameter("fName", "Егор");
+            for (var item : queryByName.list()) {
+                System.out.println(item);
+            }
 
             Query queryUpdate = session.createQuery(
                     "update Candidate c set c.experience = :newExp, c.salary = :newSal where c.id = : fId");
