@@ -36,10 +36,11 @@ public class Run {
             session.persist(candidate);
 
             res = session.createQuery(
-                            "select can from Candidate can" +
-                                    " where can.id = :cId", Candidate.class
-                    ).setParameter("cId", 1)
-                    .uniqueResult();
+                    "select distinct c from Candidate c "
+                            + "join fetch c.dataBasePost a "
+                            + "join fetch a.posts b "
+                            + "where c.id = :sId", Candidate.class
+            ).setParameter("sId", 1).uniqueResult();
             System.out.println(res);
 
             session.getTransaction().commit();
